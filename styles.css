@@ -1,0 +1,266 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background-color: sandybrown;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden {
+  display: none;
+}
+
+h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 1em;
+}
+
+#input-container {
+  background-color: lightsalmon;
+  padding: 2em;
+  border-radius: 1em;
+  box-shadow: 0 4em 5em rgba(27, 8, 53, 0.2);
+  text-align: center;
+}
+
+#playerCount,
+input[type="text"] {
+  margin: 0.5em 0;
+  padding: 0.5em;
+  border-radius: 0.5em;
+  border: 2px solid #ccc;
+  width: 70%;
+}
+
+button {
+  padding: 0.5em 1em;
+  border-radius: 0.5em;
+  background-color: #6414e9;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.wrapper {
+  width: 90%;
+  max-width: 34.37em;
+  max-height: 90vh;
+  background-color: lightskyblue;
+  padding: 3em;
+  border-radius: 1em;
+  box-shadow: 0 4em 5em rgba(27, 8, 53, 0.2);
+  text-align: center;
+  overflow: visible; /* Ensure the buttons are visible outside the container */
+}
+
+.container {
+  position: relative;
+  height: 400px; /* Fixed height to keep the wheel in place */
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#wheel {
+  height: 100%;
+  width: 100%;
+}
+
+#spin-btn {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  height: 90px; /* Fixed size for better alignment */
+  width: 90px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 0;
+  background: radial-gradient(#fdcf3b 50%, #d88a40 85%);
+  color: #c66e16;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+img {
+  position: absolute;
+  width: 4em;
+  top: 45%;
+  right: -8%;
+}
+
+#final-value {
+  font-size: 1.5em;
+  text-align: center;
+  margin-top: 1.5em;
+  color: #202020;
+  font-weight: 500;
+}
+
+#truth-dare-buttons {
+  position: absolute;
+  bottom: -60px; /* Position the buttons outside the container */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+#truth-btn,
+#dare-btn {
+  padding: 12px 24px;
+  font-size: 20px;
+  background-color: white; /* Green */
+  color: black;
+  font-weight: bolder;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+#dare-btn {
+  padding: 12px 24px;
+  font-size: 20px;
+  background-color: #ff9a00;
+  color: white;
+  font-weight: bolder;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#truth-btn:hover,
+#dare-btn:hover {
+  background-color: cyan;
+}
+
+#dare-btn:hover {
+  background-color: rgb(235, 25, 25);
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    height: 300px;
+    width: 300px;
+  }
+
+  #spin-btn {
+    height: 70px;
+    width: 70px;
+    font-size: 1em;
+  }
+
+  #truth-btn,
+  #dare-btn {
+    font-size: 25px;
+    padding: 10px 20px;
+  }
+
+  #truth-dare-buttons {
+    bottom: -40px; /* Adjust position for smaller screens */
+  }
+}
+
+body::-webkit-scrollbar {
+  display: none; /* For Chrome, Safari, and Edge */
+}
+
+#question-display {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
+  word-wrap: break-word; /* Ensure long words break onto the next line */
+  max-width: 90%; /* Ensure it doesn't overflow the container */
+  max-height: 100px; /* Constrain height */
+  overflow-y: auto; /* Allow vertical scroll for long text */
+  display: none; /* Initially hidden */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Toggle container */
+#toggle-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* Toggle switch styles */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 70px; /* Increased size */
+  height: 35px; /* Increased size */
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: peachpuff;
+  transition: background-color 0.4s, transform 0.4s; /* Combined transition */
+  border-radius: 25px;
+}
+
+.slider-icon {
+  position: absolute;
+  height: 26px; /* Adjusted size to fit the toggle */
+  width: 26px; /* Adjusted size to fit the toggle */
+  left: 3px;
+  bottom: 3px;
+  transition: transform 0.4s; /* Smooth transform for the icon */
+  border-radius: 50%;
+  font-size: 20px; /* Increased size for emoji */
+  line-height: 24px; /* Center the emoji vertically */
+  text-align: center;
+}
+
+/* Show/hide icons based on checked state */
+input:not(:checked) + .slider .off-icon {
+  display: block; /* Show the "off" emoji when unchecked */
+}
+input:not(:checked) + .slider .on-icon {
+  display: none; /* Hide the "on" emoji when unchecked */
+}
+
+input:checked + .slider .off-icon {
+  display: none; /* Hide the "off" emoji when checked */
+}
+input:checked + .slider .on-icon {
+  display: block; /* Show the "on" emoji when checked */
+}
+
+input:checked + .slider {
+  background-color: orangered; /* Change background color when checked */
+}
+
+input:checked + .slider .slider-icon.on-icon {
+  transform: translateX(35px); /* Move on icon to the right */
+}
